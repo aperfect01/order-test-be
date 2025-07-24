@@ -56,3 +56,11 @@ You have a few options for running the application:
   ```bash
   npm run start
   ```
+
+### Running Tests
+
+To run any tests that may be implemented in the future, use the following command:
+
+```bash
+npm run test
+``` 
