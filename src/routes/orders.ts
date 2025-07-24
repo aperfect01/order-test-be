@@ -27,13 +27,19 @@ router.get("/orders", (req, res, next) => {
     params.push(`%${product}%`);
   }
 
-  query += " LIMIT ? OFFSET ?";
+  query += " ORDER BY id DESC LIMIT ? OFFSET ?";
   params.push(Number(limit), Number(offset));
 
   db.all(query, params, (err, rows: Order[]) => {
     if (err) return next(err);
-    res.json(rows);
-  });
+    // return data with total, limit, and offset
+    res.json({
+      data: rows,
+      total: rows.length,
+      limit: Number(limit),
+      offset: Number(offset),
+    });
+  }); 
 });
 
 // POST /api/orders
